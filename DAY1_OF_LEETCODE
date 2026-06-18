@@ -1,0 +1,84 @@
+1.PROBLEM : 9. Palindrome Number
+SOURCE CODE : 
+        class Solution {
+            public boolean isPalindrome(int x) {
+                int sum=0;
+                int temp=x;
+                while(x>0){
+                    int rem=x%10;
+                    sum=sum*10+rem;
+                    x/=10;
+                }
+                return temp==sum;
+            }
+        }
+PROBLEM LINK : https://leetcode.com/problems/palindrome-number/
+
+
+2.PROBLEM : 26. Remove Duplicates from Sorted Array
+source code : 
+        class Solution {
+            public int removeDuplicates(int[] nums) {
+                int k=1;
+                for(int i=0;i<nums.length;i++){
+                    if(nums[i]!=nums[k-1]){
+                        nums[k]=nums[i];
+                        k++;
+                    }
+                }
+                return k;
+            }
+        }
+problem link : https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+
+
+3.PROBLEM : 27. Remove Element
+SOURCE CODE : 
+        class Solution {
+            public int removeElement(int[] nums, int val) {
+                int k=0;
+                for(int i=0;i<nums.length;i++){
+                    if(nums[i]==val){
+                        continue;
+                    }else{
+                        nums[k]=nums[i];
+                        k++;
+                    }
+                }
+                return k;
+            }
+        }
+PROBLEM LINK : https://leetcode.com/problems/remove-element/
+
+
+4.PROBLEM : 69. Sqrt(x)
+SOURCE CODE : 
+        class Solution {
+            public int mySqrt(int x) {
+                return (int) Math.sqrt(x);
+            }
+        }
+PROBLEM LINK : https://leetcode.com/problems/sqrtx/
+
+
+5.PROBLEM : 35. Search Insert Position
+SOURCE CODE : 
+        class Solution {
+            public int searchInsert(int[] nums, int target) {
+                int low=0,high=nums.length-1;
+                while(low<=high){
+                    int mid=low+(high-low)/2;
+                    if(nums[mid]==target){
+                        return mid;
+                    }
+                    else if(nums[mid]<target){
+                        low=mid+1;
+                    }
+                    else{
+                        high=mid-1;
+                    }
+                }
+                return low;
+            }
+        }
+PROBLEM LINK : https://leetcode.com/problems/search-insert-position/
