@@ -1,0 +1,133 @@
+1.PROBLEM : 121. Best Time to Buy and Sell Stock
+SOURCE CODE : 
+        class Solution {
+            public int maxProfit(int[] prices) {
+                int minCost=prices[0],maxProfit=0;
+                for(int i=0;i<prices.length;i++){
+                    int profit=prices[i]-minCost;
+                    maxProfit=Math.max(maxProfit,profit);
+                    minCost=Math.min(prices[i],minCost);
+                }
+                return maxProfit;
+            }
+        }
+PROBLEM LINK : https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+
+
+2.PROBLEM : 136. Single Number
+SOURCE CODE : 
+        class Solution {
+            public int singleNumber(int[] nums) {
+                int result=0;
+                for(int num:nums){
+                    result^=num;
+                }
+                return result;
+            }
+        }
+PROBLEM LINK : https://leetcode.com/problems/single-number/
+
+
+3.PROBLEM : 283. Move Zeroes
+SOURCE CODE : 
+        class Solution {
+            public void moveZeroes(int[] nums) {
+                int j=0;
+                for(int i=0;i<nums.length;i++){
+                    if(nums[i]!=0){
+                        int temp=nums[i];
+                        nums[i]=nums[j];
+                        nums[j]=temp;
+                        j++;
+                    }
+                }
+            }
+        }
+PROBLEM LINK : https://leetcode.com/problems/move-zeroes/
+
+
+4.PROBLEM : 268. Missing Number
+SOURCE CODE : 
+        class Solution {
+            public int missingNumber(int[] nums) {
+                int n=nums.length;
+                int actualSum=Arrays.stream(nums).sum();
+                int expectSum=n*(n+1)/2;
+                return expectSum-actualSum;
+            }
+        }
+PROBLEM LINK : https://leetcode.com/problems/missing-number/
+
+
+5.PROBLEM : 1431. Kids With the Greatest Number of Candies
+SOURCE CODE : 
+        class Solution {
+            public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+                int n=candies.length;
+                ArrayList<Boolean> result=new ArrayList<>();
+                int max=0;
+                for(int candy:candies){
+                    max=Math.max(candy,max);
+                }
+                for(int i=0;i<n;i++){
+                    if((candies[i]+extraCandies)>=max){
+                        result.add(true);
+                    }else{
+                        result.add(false);
+                    }
+                }
+                return result;
+            }
+        }
+PROBLEM LINK : https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/
+
+
+6.PROBLEM : 238. Product of Array Except Self
+SOURCE CODE : 
+        class Solution {
+            public int[] productExceptSelf(int[] nums) {
+                int result[]=new int[nums.length];
+                result[0]=1;
+                for(int i=1;i<nums.length;i++){
+                    result[i]=result[i-1]*nums[i-1];
+                }
+                int prev=1;
+                for(int i=nums.length-1;i>=0;i--){
+                    result[i]*=prev;
+                    prev*=nums[i];
+                }
+                return result;
+            }
+        }
+PROBLEM LINK : https://leetcode.com/problems/product-of-array-except-self/
+
+
+7.PROBLEM : 345. Reverse Vowels of a String
+SOURCE CODE : 
+        class Solution {
+            public String reverseVowels(String s) {
+                int n=s.length();
+                char arr[]=s.toCharArray();
+                int left=0,right=n-1;
+                while(left<right){
+                    while(left<right && !isVowel(arr[left])){
+                        left++;
+                    }
+                    while(left<right && !isVowel(arr[right])){
+                        right--;
+                    }
+                    char temp=arr[left];
+                    arr[left]=arr[right];
+                    arr[right]=temp;
+                    left++;
+                    right--;
+                }
+                return new String(arr);
+            }
+            private boolean isVowel(char c) 
+            {
+                return (c=='a'||c=='e'||c=='i'||c=='o'||c=='u'||
+                        c=='A'||c=='E'||c=='I'||c=='O'||c=='U');
+            }
+        }
+PROBLEM LINK : https://leetcode.com/problems/reverse-vowels-of-a-string/
