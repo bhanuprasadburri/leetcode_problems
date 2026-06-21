@@ -1,0 +1,118 @@
+1.PROBLEM : 283. Move Zeroes
+SOURCE CODE : 
+        class Solution {
+            public void moveZeroes(int[] nums) {
+                int j=0;
+                for(int i=0;i<nums.length;i++){
+                    if(nums[i]!=0){
+                        int temp=nums[i];
+                        nums[i]=nums[j];
+                        nums[j]=temp;
+                        j++;
+                    }
+                }
+            }
+        }
+PROBLEM LINK : https://leetcode.com/problems/move-zeroes/
+
+
+2.PROBLEM : 11. Container With Most Water
+SOURCE CODE : 
+        class Solution {
+            public int maxArea(int[] height) {
+                int left=0;
+                int right=height.length-1;
+                int maxArea=0;
+                while(left<right){
+                    int high=Math.min(height[left],height[right]);
+                    int width=right-left;
+                    int area=high*width;
+                    maxArea=Math.max(maxArea,area);
+                    if(height[left]>height[right]){
+                        right--;
+                    }
+                    else{
+                        left++;
+                    }
+                }
+                return maxArea;
+            }
+        }
+PROBLEM LINK : https://leetcode.com/problems/container-with-most-water/
+
+
+3.PROBLEM : 605. Can Place Flowers
+SOURCE CODE : 
+        class Solution {
+            public boolean canPlaceFlowers(int[] flowerbed, int n) {
+                for(int i=0;i<flowerbed.length;i++){
+                    if(flowerbed[i]==0){
+                        boolean left=(i==0) || (flowerbed[i-1]==0);
+                        boolean right=(i==flowerbed.length-1) || (flowerbed[i+1]==0);
+                        if(left && right){
+                            flowerbed[i]=1;
+                            n--;
+                        }
+                    }
+                    if(n<=0){
+                        return true;
+                    }
+                }
+                return n<=0;
+            }
+        }
+PROBLEM LINK : https://leetcode.com/problems/can-place-flowers/
+
+
+4.PROBLEM : 1679. Max Number of K-Sum Pairs
+SOURCE CODE : 
+        class Solution {
+            public int maxOperations(int[] nums, int k) {
+                int count=0;
+                HashMap<Integer,Integer> map=new HashMap<>();
+                for(int num:nums){
+                    if(map.getOrDefault(k-num,0)>0){
+                        count++;
+                        map.put(k-num,map.get(k-num)-1);
+                    }
+                    else{
+                        map.put(num,map.getOrDefault(num,0)+1);
+                    }
+                }
+                return count;
+            }
+        }
+PROBLEM LINK : https://leetcode.com/problems/max-number-of-k-sum-pairs/
+
+
+5.PROBLEM : 2215. Find the Difference of Two Arrays
+SOURCE CODE : 
+        class Solution {
+            public List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
+                Set<Integer> set1=new HashSet<>();
+                Set<Integer> set2=new HashSet<>();
+                for(int num:nums1){
+                    set1.add(num);
+                }
+                for(int num:nums2){
+                    set2.add(num);
+                }
+                List<Integer> list1=new ArrayList<>();
+                List<Integer> list2=new ArrayList<>();
+                for(int num:set1){
+                    if(!set2.contains(num)){
+                        list1.add(num);
+                    }
+                }
+                for(int num:set2){
+                    if(!set1.contains(num)){
+                        list2.add(num);
+                    }
+                }
+                List<List<Integer>> res=new ArrayList<>();
+                res.add(list1);
+                res.add(list2);
+                return res;
+            }
+        }
+PROBLEM LINK : https://leetcode.com/problems/find-the-difference-of-two-arrays/
